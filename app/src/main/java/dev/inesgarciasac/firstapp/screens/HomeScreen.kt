@@ -27,7 +27,7 @@ fun HomeScreen(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Red
+                    containerColor = Color.LightGray
                 ),
                 title = {
                     Text(

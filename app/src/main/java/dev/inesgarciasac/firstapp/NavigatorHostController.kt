@@ -1,0 +1,48 @@
+package dev.inesgarciasac.firstapp
+
+import android.transition.Slide
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import dev.inesgarciasac.firstapp.screens.AddScreen
+import dev.inesgarciasac.firstapp.screens.HomeScreen
+
+@Composable
+fun NavigatorHostController() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = "home",
+        enterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(300)
+            )
+        },
+        exitTransition = {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(300)
+            )
+        },
+        popEnterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                animationSpec = tween(300)
+            )
+        },
+        popExitTransition = {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                animationSpec = tween(300)
+            )
+        }
+    ) {
+        //Listo todas las pantallas que tengo
+        composable(route = "home") { HomeScreen(navController) }
+        composable(route = "add") { AddScreen(navController) }
+    }
+}
