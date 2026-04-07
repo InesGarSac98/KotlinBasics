@@ -45,13 +45,13 @@ fun NavigatorHostController() {
         }
     ) {
         //Listo todas las pantallas que tengo
-        composable(route = "home") { HomeScreen(navController) }
-        composable(route = "add") { AddScreen(navController) }
+        composable(route = Screens.HomeScreen.name) { HomeScreen(navController) }
+        composable(route = Screens.AddScreen.name) { AddScreen(navController) }
 
         //Envio de parametro
         composable(
             //route = "contact/{userName}", parametro obligatorio
-            route = "contact?userName={userName}",
+            route = "${Screens.ContactScreen.name}?userName={userName}",
             arguments = listOf(
                 navArgument(
                     "userName"

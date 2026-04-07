@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import dev.inesgarciasac.firstapp.Screens
 import dev.inesgarciasac.firstapp.layouts.ItemContact
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,8 +38,8 @@ fun HomeScreen(navController: NavHostController) {
 
         floatingActionButton = {
             FloatingActionButton(
-                containerColor = Color.Red,
-                onClick = { navController.navigate(route = "add") }
+                containerColor = Color.Magenta,
+                onClick = { navController.navigate(route = Screens.AddScreen.name) }
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -50,7 +51,7 @@ fun HomeScreen(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.LightGray
+                    containerColor = Color.Magenta
                 ),
                 title = {
                     Text(
@@ -67,13 +68,19 @@ fun HomeScreen(navController: NavHostController) {
         ) {
             NameElement(
                 name = "Peter Parker",
-                phone = "678 964 785",
+                phone = "607 972 543",
                 navController
             )
             Divider()
             NameElement(
                 name = "Tony Stark",
                 phone = "678 964 785",
+                navController
+            )
+            Divider()
+            NameElement(
+                name = "Steve Rogers",
+                phone = "609 362 784",
                 navController
             )
         }
@@ -94,7 +101,7 @@ fun NameElement(
             .padding(16.dp)
             .clickable{
                 //navController.navigate("contact/$name")
-                navController.navigate("contact?userName=$name")
+                navController.navigate("${Screens.ContactScreen.name}?userName=$name")
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
