@@ -47,15 +47,20 @@ fun NavigatorHostController() {
         //Listo todas las pantallas que tengo
         composable(route = "home") { HomeScreen(navController) }
         composable(route = "add") { AddScreen(navController) }
+
+        //Envio de parametro
         composable(
-            route = "contact/{userName}",
-            arguments = listOf(navArgument(
-                "userName"
-            ){
-                type = NavType.StringType
-            })
-        ) {
-            val userName = it.arguments?.getString("userName")
+            //route = "contact/{userName}", parametro obligatorio
+            route = "contact?userName={userName}",
+            arguments = listOf(
+                navArgument(
+                    "userName"
+                ) {
+                    //type = NavType.StringType
+                    defaultValue = "No name"
+                })
+        ) { stackEntry ->
+            val userName = stackEntry.arguments?.getString("userName")
 
             ContactScreen(navController, userName)
         }

@@ -93,7 +93,8 @@ fun NameElement(
             .fillMaxWidth()
             .padding(16.dp)
             .clickable{
-                navController.navigate("contact/$name")
+                //navController.navigate("contact/$name")
+                navController.navigate("contact?userName=$name")
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
