@@ -4,10 +4,13 @@ import android.transition.Slide
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dev.inesgarciasac.firstapp.screens.AddScreen
+import dev.inesgarciasac.firstapp.screens.ContactScreen
 import dev.inesgarciasac.firstapp.screens.HomeScreen
 
 @Composable
@@ -44,5 +47,17 @@ fun NavigatorHostController() {
         //Listo todas las pantallas que tengo
         composable(route = "home") { HomeScreen(navController) }
         composable(route = "add") { AddScreen(navController) }
+        composable(
+            route = "contact/{userName}",
+            arguments = listOf(navArgument(
+                "userName"
+            ){
+                type = NavType.StringType
+            })
+        ) {
+            val userName = it.arguments?.getString("userName")
+
+            ContactScreen(navController, userName)
+        }
     }
 }
